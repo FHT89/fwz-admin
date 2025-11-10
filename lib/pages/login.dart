@@ -273,7 +273,7 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Text(
                               "Vous n'avez pas de compte ?",
-                              style: TextStyle(fontSize: 14, fontFamily: 'sgn'),
+                              style: TextStyle(fontSize: 14),
                               textAlign: TextAlign.center,
                             ),
                             InkWell(

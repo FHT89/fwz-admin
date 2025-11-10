@@ -1,11 +1,6 @@
 import 'dart:math';
-import 'dart:typed_data';
 import 'package:fhtwzadmin/utils/loading/loading_overlay_pro.dart';
-import 'package:file_saver/file_saver.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 import 'package:toastification/toastification.dart';
 import 'package:flutter/material.dart';
 import 'utils/classlist.dart';
@@ -445,74 +440,5 @@ String dateToEnglish(String dt) {
     return "$annee-$mois-$jour".toString().trim();
   } catch (e) {
     return '';
-  }
-}
-
-//
-
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////variable normalisation///////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-String reponsestatutdemande = '',
-    reponsefinialisation = '',
-    reponsefactureupdate = '';
-String uidfact = '';
-var articlesygmefmap = [];
-
-List<CParamSite> dparamsiteplus = [];
-
-///Element sécurité
-///
-String vcodeMECeFDGI = '',
-    vnim = '',
-    vcounters = '',
-    vdateTime = '',
-    vqrCode = '',
-    vtc = '',
-    vreference = '';
-
-String intcodegenerator(int length, List<String> notin) {
-  List<int> code = [];
-  String codestr = '';
-  do {
-    code = List.generate(length, (_) => Random().nextInt(10));
-    codestr = code.join();
-  } while (notin.contains(codestr));
-  return codestr;
-}
-
-List<CLVenteMode> lstmodpaie = [];
-
-List<CModepaiement> ltmodepaiement = [
-  CModepaiement(id: 0, lib: 'Aucun', ordre: 1),
-  CModepaiement(id: 1, lib: 'Espèces', ordre: 2),
-  CModepaiement(id: 2, lib: 'MoMo MTN', ordre: 3),
-  CModepaiement(id: 3, lib: 'Chèque', ordre: 6),
-  CModepaiement(id: 4, lib: 'Virement bancaire', ordre: 7),
-  CModepaiement(id: 5, lib: 'TPE', ordre: 8),
-  CModepaiement(id: 6, lib: 'MoMo MOOV', ordre: 4),
-  CModepaiement(id: 7, lib: 'MoMo CELTIS', ordre: 5),
-];
-
-savePdf(int vtypimp, pw.Document pdf, String nomfich, int imprDirect) async {
-  if (vtypimp == 0) {
-    Uint8List bytes = await pdf.save();
-    final bytes1 = Uint8List.fromList(bytes);
-    await FileSaver.instance.saveFile(
-      name: nomfich,
-      bytes: bytes1,
-      mimeType: MimeType.text,
-    );
-  } else {
-    if (imprDirect == 0) {
-      await Printing.layoutPdf(
-        onLayout: (PdfPageFormat format) async => pdf.save(),
-      );
-    } else {
-      /*await Printing.directPrintPdf(
-      onLayout: (PdfPageFormat format) async => pdf.save(), printer:,
-    );*/
-    }
   }
 }

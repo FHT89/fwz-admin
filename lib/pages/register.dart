@@ -555,7 +555,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           Text(
                             "Vous avez déjà un compte ?",
-                            style: TextStyle(fontSize: 14, fontFamily: 'sgn'),
+                            style: TextStyle(fontSize: 14),
                             textAlign: TextAlign.center,
                           ),
                           InkWell(

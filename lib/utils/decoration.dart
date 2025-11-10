@@ -72,7 +72,6 @@ TextStyle wtTitle(
 ) => TextStyle(
   fontSize: size,
   wordSpacing: wspacing,
-  fontFamily: 'sgn',
   fontStyle: italic ? FontStyle.italic : FontStyle.normal,
   fontWeight: bold ? FontWeight.bold : FontWeight.normal,
   color: color,
